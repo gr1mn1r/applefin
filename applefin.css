@@ -19,7 +19,7 @@ position: fixed !important;
   right: auto !important;
   z-index: 99999 !important;
 }
-.headerButton {
+.headerUserButtonRound {
 outline: 3px solid lime !important;
 }
 }
