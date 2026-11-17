@@ -21,23 +21,4 @@ position: fixed !important;
   margin: 0 !important;
   padding: 0 !important;
 }
-.page {
-background: transparent !important;
-}
-
-.sectionTitle {
-color: var(--apple-text) !important;
-font-weight: 700 !important;
-letter-spacing: -0.5px;
-}
-
-.cardBox {
-border-radius: 12px;
-overflow: hidden;
-transition: transform 250ms ease;
-}
-
-.cardBox:hover {
-transform: scale(1.04);
-}
 }
