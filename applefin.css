@@ -7,19 +7,8 @@
 }
 
 @media screen and (min-width: 1024px) {
-body {
-background: var(--apple-bg) !important;
-color: var(--apple-text) !important;
-}
-.headerUserButton {
-position: fixed !important;
-  left: 45px !important;
-  bottom: 30px !important;
-  top: auto !important;
-  right: auto !important;
-  z-index: 99999 !important;
-}
-.headerUserButtonRound {
-outline: 3px solid lime !important;
-}
+.headerButton.headerButtonRight.paper-icon-button-light.headerUserButtonRound {
+    position: fixed !important;
+    inset: auto auto 30px 35px !important;
+    z-index: 99999 !important;
 }
