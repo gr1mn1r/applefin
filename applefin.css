@@ -11,7 +11,16 @@ body {
 background: var(--apple-bg) !important;
 color: var(--apple-text) !important;
 }
-
+.pageTitle {
+position: fixed !important;
+  left: 45px !important;
+  bottom: 30px !important;
+  top: auto !important;
+  right: auto !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 .page {
 background: transparent !important;
 }
