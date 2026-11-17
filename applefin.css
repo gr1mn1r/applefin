@@ -1,1 +1,3613 @@
+:root {
+    --apple-bg: #0a0a0c;
+    --apple-glass: rgba(255, 255, 255, 0.1);
+    --apple-glass-heavy: rgba(255, 255, 255, 0.2);
+    --apple-text: #ffffff;
+    --apple-text-dim: rgba(255, 255, 255, 0.6);
+    --apple-accent: #007aff;
+    --apple-radius: 12px;
+    --apple-radius-large: 20px;
+    --apple-blur: blur(25px) saturate(180%);
+    --apple-shadow: 0 40px 40px -40px rgba(0, 0, 0, 0.9), 0 -40px 40px -40px rgba(0, 0, 0, 0.9);
+    --apple-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --apple-spring-fast: cubic-bezier(0.16, 1, 0.3, 1);
+    --apple-spring-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
 
+    /* ── Jellyfin 10.9 Legacy Variable Overrides ── */
+    --theme-background: var(--apple-bg);
+    --theme-header-background: transparent;
+    --theme-drawer-background: rgba(10, 10, 10, 0.85);
+    --theme-dialog-background: rgba(15, 15, 15, 0.9);
+    --theme-card-background: var(--apple-glass);
+    --theme-primary-color: var(--apple-accent);
+    --theme-accent-color: var(--apple-accent);
+    --theme-text-color: var(--apple-text);
+    --theme-text-color-dim: var(--apple-text-dim);
+
+    /* ── Jellyfin 12.0 MUI / Native Variable Bridge ──
+     * Jellyfin 12 uses a shared base theme built on MUI CSS variables.
+     * Mapping our design tokens to the --jf-palette-* and --mui-palette-*
+     * properties ensures the theme integrates natively with 12.0's "Modern"
+     * layout without requiring a companion fix CSS. */
+    --jf-palette-background-default: var(--apple-bg);
+    --jf-palette-background-defaultImage: none;
+    --jf-palette-background-paper: rgba(15, 15, 15, 0.9);
+    --jf-palette-primary-main: var(--apple-accent);
+    --jf-palette-primary-dark: #005ec4;
+    --jf-palette-primary-light: #4da3ff;
+    --jf-palette-secondary-main: var(--apple-accent);
+    --jf-palette-text-primary: var(--apple-text);
+    --jf-palette-text-secondary: var(--apple-text-dim);
+    --jf-palette-divider: rgba(255, 255, 255, 0.1);
+    --jf-palette-action-focus: rgba(255, 255, 255, 0.12);
+    --jf-palette-action-hover: rgba(255, 255, 255, 0.08);
+    --jf-palette-AppBar-defaultBg: transparent;
+    --jf-palette-AppBar-transparentBg: transparent;
+    --jf-palette-AppBar-gradient: none;
+    --jf-card-borderRadius: var(--apple-radius);
+
+    /* MUI CSS-vars mode (Jellyfin 12 builds with @mui/material v6+) */
+    --mui-palette-background-default: var(--apple-bg);
+    --mui-palette-background-paper: rgba(15, 15, 15, 0.9);
+    --mui-palette-primary-main: var(--apple-accent);
+    --mui-palette-secondary-main: var(--apple-accent);
+    --mui-palette-text-primary: var(--apple-text);
+    --mui-palette-text-secondary: var(--apple-text-dim);
+    --mui-palette-divider: rgba(255, 255, 255, 0.1);
+    --mui-palette-AppBar-defaultBg: transparent;
+    --mui-shape-borderRadius: var(--apple-radius);
+
+    /* ── Opt-In Theme Feature Toggles ── */
+    --spoiler-blur: 0px;
+    --card-labels: block;
+    --sub-size: 100%;
+    --sub-color: var(--apple-text);
+    --sub-bg: rgba(0, 0, 0, 0.5);
+    --sub-offset: 0px;
+}
+
+html,
+body {
+    font-family: var(--apple-font) !important;
+    background-color: var(--apple-bg);
+    color: var(--apple-text);
+}
+
+.backgroundContainer {
+    background-color: var(--apple-bg) !important;
+}
+
+.backgroundContainer.withBackdrop,
+body:has(#itemDetailPage:not(.hide)) .backgroundContainer {
+    background-color: transparent !important;
+}
+
+.skinBody,
+.mainAnimatedPages,
+.mainAnimatedPage,
+.pageContainer,
+#itemDetailPage,
+#searchPage {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.view,
+.mainAnimatedPages,
+.skinBody,
+.page-current {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.backdropContainer {
+    background-color: transparent !important;
+    overflow: hidden !important;
+}
+
+.backdropImage {
+    filter: blur(25px) brightness(65%) !important;
+    -webkit-filter: blur(25px) brightness(65%) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition: opacity 0.8s ease-in-out !important;
+}
+
+.skinHeader,
+.header,
+header,
+.app-header,
+.header-top,
+.skinHeader-withBackground,
+.header-withBackground,
+.skinHeader.semiTransparent,
+.skinHeader-semiTransparent,
+.headerSemiTransparent,
+.header-semiTransparent,
+header.semiTransparent,
+header.withBackground,
+header.header-scrolled,
+.MuiAppBar-root {
+    background: rgba(20, 20, 22, 0.82) !important;
+    background-color: rgba(20, 20, 22, 0.82) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    overflow: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    contain: none !important;
+    height: auto !important;
+    min-height: 4em !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.headroom--unpinned {
+    transform: translateY(-100%) !important;
+}
+
+.headroom--pinned {
+    transform: translateY(0) !important;
+}
+
+.headerTop,
+.headerLeft,
+.headerRight,
+.headerTabs,
+.header-top,
+.header-left,
+.header-right,
+.header-tabs,
+.emby-tabs-slider,
+.emby-tabs-scroll-container {
+    overflow: visible !important;
+    contain: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.skinHeader .headerLeft img,
+.skinHeader .pageTitle img,
+.skinHeader .headerLogo,
+.skinHeader .logo,
+.skinHeader .pageTitleWithLogo,
+.skinHeader .headerLogo svg,
+.skinHeader .logo svg,
+header .headerLeft img,
+header .pageTitle img,
+header .headerLogo,
+header .logo,
+header .pageTitleWithLogo,
+header .headerLogo svg,
+header .logo svg {
+    height: 32px !important;
+    width: auto !important;
+    min-width: 120px !important;
+    object-fit: contain !important;
+    overflow: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: left center !important;
+    z-index: 1001 !important;
+    transform: scale(1.1) !important;
+    transform-origin: left center !important;
+}
+
+.headerButton.headerButtonLeft {
+    display: flex !important;
+    align-items: center !important;
+    overflow: visible !important;
+}
+
+.pageTitle {
+    display: flex !important;
+    align-items: center !important;
+    overflow: visible !important;
+}
+
+.headerLeft,
+.header-left {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.5em 1em !important;
+}
+
+.emby-tab-button,
+.tab-button,
+.nav-tab-button {
+    font-weight: 600 !important;
+    font-size: 1.1em !important;
+    color: var(--apple-text-dim) !important;
+    padding: 0.6em 1.5em !important;
+    border-radius: 40px !important;
+    margin: 0 0.5em !important;
+    transition: all 0.4s var(--apple-spring-fast) !important;
+    background: transparent !important;
+    overflow: hidden !important;
+}
+
+/* Single source of truth for tab-button active state (keyboard + pointer) */
+.emby-tab-button:focus,
+.emby-tab-button:hover,
+.tab-button:focus,
+.tab-button:hover,
+.nav-tab-button:focus,
+.nav-tab-button:hover {
+    color: var(--apple-text) !important;
+    background: var(--apple-glass) !important;
+    transform: scale(1.05) !important;
+}
+
+.emby-tab-button:active,
+.tab-button:active,
+.nav-tab-button:active {
+    transform: scale(0.94) !important;
+}
+
+.emby-tab-button.emby-tab-button-active,
+.tab-button.active,
+.nav-tab-button.active {
+    color: var(--apple-text) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    border-radius: 40px !important;
+    outline: none !important;
+}
+
+.emby-button-focusring {
+    display: none !important;
+}
+
+.emby-tabs-selectionbar {
+    display: none !important;
+}
+
+/* Surface panels: panel chrome only, no scroll/overflow (bleeds carets, shadows) */
+.actionSheet,
+.action-sheet,
+.dialog,
+.dialog-container,
+.dialogContainer,
+.menu,
+.context-menu,
+.formDialog {
+    background-color: rgba(15, 15, 15, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--apple-radius) !important;
+    color: white !important;
+    isolation: isolate !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 500 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Scroll host: only the inner list scrolls, so .menu doesn't double up */
+.paperList {
+    overflow-y: auto !important;
+    color: white !important;
+}
+
+/* Form controls: inputs/selects need chrome but NOT text-shadow or isolation */
+.emby-input,
+.emby-select {
+    background-color: rgba(15, 15, 15, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--apple-radius) !important;
+    color: white !important;
+    font-weight: 500 !important;
+}
+
+/* Drawer scroll pane: transparent so .mainDrawer's panel chrome shows through */
+.mainDrawer-scrollContainer {
+    background-color: transparent !important;
+    color: white !important;
+    overflow-y: auto !important;
+}
+
+.emby-textarea {
+    background-color: rgba(15, 15, 15, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--apple-radius) !important;
+    color: white !important;
+    isolation: isolate !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 500 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.mainDrawer,
+.drawer,
+.navDrawer,
+.sidebarNav,
+.drawerContent,
+.sidebar,
+.navMenu {
+    background-color: rgba(10, 10, 10, 0.85) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 var(--apple-radius) var(--apple-radius) 0 !important;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
+    isolation: isolate !important;
+    transition: transform 0.4s var(--apple-spring-fast),
+                opacity 0.3s ease !important;
+}
+
+:where(.mainDrawer, .drawer, .navDrawer):where(:not(.drawer-open):not(.is-open)) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.mainDrawer.is-open,
+.mainDrawer.drawer-open,
+.dashboardDocument .mainDrawer,
+.drawer.is-open,
+.drawer.drawer-open,
+.navDrawer.is-open,
+.navDrawer.drawer-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.actionSheet-title {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.listItem-border {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.emby-select-withcolor {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.emby-select:focus,
+.emby-input:focus,
+.emby-textarea:focus {
+    border-color: var(--apple-accent) !important;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3) !important;
+}
+
+.card,
+.portraitCard,
+.squareCard,
+.backdropCard,
+.scalableCard,
+.cardBox,
+.cardScalable,
+.cardContent,
+.cardImageContainer,
+.cardPadder {
+    border-radius: var(--apple-radius) !important;
+}
+
+.card,
+.portraitCard,
+.squareCard,
+.backdropCard,
+.scalableCard {
+    overflow: visible !important;
+    transition: transform 0.28s var(--apple-spring-fast), box-shadow 0.28s ease !important;
+    position: relative !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    margin: 1.2em !important;
+}
+
+.card:active,
+.portraitCard:active,
+.squareCard:active,
+.backdropCard:active {
+    transform: scale(0.96) !important;
+    transition: transform 0.2s var(--apple-spring-fast) !important;
+}
+
+.cardBox,
+.cardScalable {
+    background: transparent !important;
+    background-color: transparent !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+
+.cardContent,
+.cardImageContainer,
+.cardPadder,
+.cardPadder-portrait,
+.cardPadder-backdrop,
+.cardPadder-square {
+    border-radius: var(--apple-radius) !important;
+    overflow: hidden !important;
+    background-color: transparent !important;
+}
+
+.cardContent {
+    background-color: var(--apple-glass) !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.cardScalable .cardImageContainer {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.cardImageContainer {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Gradient scrim for card text legibility */
+.cardImageContainer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: 0 0 var(--apple-radius) var(--apple-radius);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .cardImageContainer::after,
+.card:focus .cardImageContainer::after {
+    opacity: 1;
+}
+
+.cardText,
+.cardTextCentered {
+    position: relative;
+    z-index: 2;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+    padding: 0.4em 0.6em !important;
+}
+
+.card:hover .cardContent,
+.card:focus .cardContent {
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+}
+
+.card:focus,
+.card:hover {
+    transform: scale(1.05) !important;
+    box-shadow: var(--apple-shadow) !important;
+    z-index: 100 !important;
+    outline: none !important;
+    border: none !important;
+}
+
+
+.card,
+.cardContent,
+.cardBox,
+.cardScalable,
+.cardPadder,
+.cardPadder-portrait,
+.cardPadder-backdrop,
+.cardPadder-square,
+.itemAction {
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.portraitCard {
+    width: 220px !important;
+}
+
+.backdropCard {
+    width: 400px !important;
+}
+
+.squareCard {
+    width: 220px !important;
+}
+
+.collectionCard .cardContent,
+.folderCard .cardContent {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+.cardOverlayButton {
+    border-radius: 50% !important;
+    background: var(--apple-glass-heavy) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+}
+
+.cardOverlayButton-br {
+    background: rgba(15, 15, 20, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+}
+
+.cardOverlayButton:hover {
+    background: var(--apple-text) !important;
+    color: #000 !important;
+}
+
+/* Etched section headers */
+.sectionTitle,
+h2.sectionTitle,
+.sectionTitleText,
+.sectionTitleTextButton {
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: none !important;
+    border-left: 3px solid var(--apple-accent) !important;
+    padding-left: 0.8em !important;
+    margin-left: 0.5em !important;
+    color: var(--apple-text) !important;
+}
+
+#itemDetailPage,
+.detailPageWrapperContainer {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.detailRibbon {
+    background: rgba(24, 24, 28, 0.85) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.layout-desktop .detailRibbon,
+.layout-desktop [dir=ltr] .detailRibbon,
+.layout-tv .detailRibbon,
+.layout-tv [dir=ltr] .detailRibbon {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-left: 25vw !important;
+    z-index: 2 !important;
+    background: rgba(24, 24, 28, 0.85) !important;
+}
+
+.layout-desktop [dir=rtl] .detailRibbon,
+.layout-tv [dir=rtl] .detailRibbon {
+    padding-left: 0 !important;
+    padding-right: 25vw !important;
+    justify-content: flex-start !important;
+}
+
+.layout-desktop .detailRibbon .mainDetailButtons,
+.layout-tv .detailRibbon .mainDetailButtons {
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6em !important;
+    z-index: 2 !important;
+}
+
+.layout-desktop .detailPagePrimaryContent,
+.layout-desktop [dir=ltr] .detailPagePrimaryContent,
+.layout-tv .detailPagePrimaryContent,
+.layout-tv [dir=ltr] .detailPagePrimaryContent {
+    padding-left: 25vw !important;
+    padding-top: 6.5em !important;
+}
+
+.layout-desktop [dir=rtl] .detailPagePrimaryContent,
+.layout-tv [dir=rtl] .detailPagePrimaryContent {
+    padding-left: 0 !important;
+    padding-right: 25vw !important;
+}
+
+
+.detailPagePrimaryContainer {
+    background: linear-gradient(180deg,
+            rgba(20, 20, 22, 0.85) 0%,
+            var(--apple-bg) 25%) !important;
+    padding-top: 2em !important;
+    padding-bottom: 4em !important;
+}
+
+.detailPageSecondaryContainer,
+#itemDetailPage .verticalSection {
+    background: var(--apple-bg) !important;
+    background-color: var(--apple-bg) !important;
+}
+
+.detailPageWrapperContainer {
+    padding-top: 1em !important;
+}
+
+.itemName,
+.itemName.parentNameLast {
+    font-size: 2.2rem !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.parentName,
+.itemName,
+.overview,
+.mediaInfoItems,
+.itemDetailsGroup {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+
+.itemBackdrop {
+    height: 50vh !important;
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%) !important;
+    opacity: 0.8 !important;
+}
+
+.detailPagePrimaryContainer .card,
+.detailImageContainer .card {
+    width: min(360px, 19vw) !important;
+    transform: none !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Jellyfin 12 floats the poster, which pushes the flex ribbon right on tall posters */
+.layout-desktop .detailPagePrimaryContainer > .detailImageContainer,
+.layout-tv .detailPagePrimaryContainer > .detailImageContainer {
+    position: absolute !important;
+    width: 100% !important;
+    height: 0 !important;
+}
+
+/* Movie Logo in Media Bar / Details */
+.detailPagePrimaryContainer .logo,
+.itemName .logo,
+.nameContainer .logo,
+.logo.high-quality {
+    height: 120px !important;
+    width: auto !important;
+    max-width: 50% !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)) !important;
+    margin-bottom: 1em !important;
+    transform: none !important;
+    min-width: unset !important;
+    display: block !important;
+}
+
+.layout-tv .detailPagePrimaryContainer .logo,
+.layout-tv .itemName .logo,
+.layout-tv .nameContainer .logo {
+    height: 200px !important;
+    margin-bottom: 1.5em !important;
+}
+
+/* TV detail (Jellyfin 12): same layout as desktop, scaled up. Native TV styles differ, so restore the desktop geometry. */
+.layout-tv .itemBackdrop {
+    display: block !important;
+}
+
+.layout-tv .detailRibbon {
+    margin-top: -7.2em !important;
+}
+
+.layout-tv .detailImageContainer .card {
+    left: 3.3% !important;
+    top: -12.96em !important;
+    margin: 0 !important;
+    width: 19vw !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+.layout-tv .itemName {
+    font-size: 2.8rem !important;
+    line-height: 1.15 !important;
+}
+
+.layout-tv #castCollapsible .emby-scroller,
+.layout-tv #guestCastCollapsible .emby-scroller {
+    margin-left: 0 !important;
+}
+
+.layout-tv #castCollapsible .sectionTitle,
+.layout-tv #guestCastCollapsible .sectionTitle,
+.layout-tv #peopleHeader,
+.layout-tv #scenesCollapsible .sectionTitle,
+.layout-tv #similarCollapsible .sectionTitle {
+    margin-left: -3.3vw !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    padding: 0.2em 1.5em 0.2em 3.3vw !important;
+    border-radius: 0 50px 50px 0 !important;
+    width: fit-content !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-left: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 0.5em !important;
+}
+
+/* Separator between metadata rows */
+.detailPageContent .itemMiscInfo,
+.detailPageContent .itemGenres,
+.detailPageContent .itemTags {
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    padding-top: 0.8em !important;
+    margin-top: 0.8em !important;
+}
+
+/* Hero Play button */
+.detailButtons .btnPlay,
+.detailButtons .button-play,
+.detailButtons [data-action="play"],
+.mainDetailButtons .btnPlay {
+    background: var(--apple-accent) !important;
+    color: #fff !important;
+    border-radius: 50px !important;
+    padding: 0.8em 2em !important;
+    font-weight: 700 !important;
+    font-size: 1.1em !important;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.4) !important;
+    transition: all 0.3s var(--apple-spring-fast) !important;
+    border: none !important;
+}
+
+@media (hover: hover) {
+    .detailButtons .btnPlay:hover,
+    .detailButtons .button-play:hover,
+    .detailButtons [data-action="play"]:hover,
+    .mainDetailButtons .btnPlay:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 6px 30px rgba(0, 122, 255, 0.6) !important;
+    }
+}
+
+.detailButtons .btnPlay:active,
+.mainDetailButtons .btnPlay:active {
+    transform: scale(0.95) !important;
+}
+
+#searchPage {
+    background-color: transparent !important;
+}
+
+.searchBar {
+    background-color: var(--apple-glass-heavy) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-radius: 40px !important;
+    margin: 2em auto !important;
+    padding: 0.5em 1.5em !important;
+    max-width: 800px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.searchBar .emby-input {
+    background: transparent !important;
+    border: none !important;
+    font-size: 1.4em !important;
+}
+
+.searchSuggestionList {
+    background-color: var(--apple-glass) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-radius: var(--apple-radius) !important;
+    margin-top: 1em !important;
+    overflow: hidden !important;
+}
+
+.emby-button.raised {
+    background: var(--apple-glass-heavy) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-radius: 30px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.emby-button.raised:focus,
+.emby-button.raised:hover {
+    background: var(--apple-text) !important;
+    color: #000 !important;
+    transform: scale(1.05) !important;
+}
+
+.emby-button.raised:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+}
+
+/* Cinematic page vignette */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.35) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes appleFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.sliderContainer .mdl-slider-background-lower {
+    background-color: #fff !important;
+}
+
+.mdl-slider-background-upper {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.sliderContainer {
+    height: 4px !important;
+    transition: height 0.3s ease !important;
+}
+
+.sliderContainer:hover {
+    height: 8px !important;
+}
+
+.sliderMarker {
+    height: 6px !important;
+    top: 50% !important;
+    transform: translate3d(0, -50%, 0) !important;
+}
+
+.sliderMarker.watched {
+    background-color: var(--apple-accent) !important;
+}
+
+.sliderMarker.unwatched {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.mdl-slider::-webkit-slider-thumb {
+    background: #fff !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    transform: scale(0);
+    transition: transform 0.2s ease !important;
+}
+
+.sliderContainer:hover .mdl-slider::-webkit-slider-thumb,
+.mdl-slider:focus::-webkit-slider-thumb,
+.mdl-slider.show-focus:focus::-webkit-slider-thumb {
+    transform: scale(1);
+}
+
+.mdl-slider::-moz-range-thumb {
+    background: #fff !important;
+    border: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    transform: scale(0);
+    transition: transform 0.2s ease !important;
+}
+
+.sliderContainer:hover .mdl-slider::-moz-range-thumb,
+.mdl-slider:focus::-moz-range-thumb,
+.mdl-slider.show-focus:focus::-moz-range-thumb {
+    transform: scale(1);
+}
+
+/* Video OSD Bottom — Modular Pro (Split-Dock Dual Islands) */
+.videoOsdBottom.videoOsdBottom-maincontrols {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    padding: 0 2rem 1.35rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    pointer-events: none !important;
+    overflow: visible !important;
+    z-index: 1000 !important;
+    transition: transform 0.25s var(--apple-spring-fast), opacity 0.25s var(--apple-spring-fast) !important;
+}
+
+.videoOsdBottom.videoOsdBottom-hidden {
+    transform: translateY(100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.videoOsdBottom .osdControls {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0.65rem !important;
+    pointer-events: none !important;
+}
+
+/* Top Timeline Island */
+.videoOsdBottom .osdControls > .flex.flex-direction-row {
+    order: 1 !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0.55rem 1.15rem !important;
+    gap: 0.9rem !important;
+    background: rgba(12, 14, 20, 0.84) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.52) !important;
+}
+
+.videoOsdBottom .osdPositionText,
+.videoOsdBottom .osdDurationText {
+    display: block !important;
+    font-family: inherit !important;
+    font-variant-numeric: tabular-nums !important;
+    font-size: 0.8rem !important;
+    color: var(--apple-text-dim) !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.videoOsdBottom .sliderContainer {
+    flex-grow: 1 !important;
+    height: 6px !important;
+    padding: 0.25rem 0 !important;
+    margin: 0.2rem 0 !important;
+    transition: height 0.18s var(--apple-spring-fast) !important;
+}
+
+.videoOsdBottom .sliderContainer:hover {
+    height: 8px !important;
+}
+
+.videoOsdBottom .osdPositionSlider,
+.videoOsdBottom .osdVolumeSlider {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.sliderContainer .mdl-slider-background-lower,
+.mdl-slider-background-lower {
+    background-color: var(--apple-accent) !important;
+}
+
+.mdl-slider-background-upper {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.sliderMarker {
+    height: 6px !important;
+    top: 50% !important;
+    transform: translate3d(0, -50%, 0) !important;
+}
+
+.sliderMarker.watched {
+    background-color: var(--apple-accent) !important;
+}
+
+.sliderMarker.unwatched {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.mdl-slider::-webkit-slider-thumb {
+    background: var(--apple-accent) !important;
+    border-radius: 50% !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+.mdl-slider::-moz-range-thumb {
+    background: var(--apple-accent) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+/* Bottom Split Islands Row */
+.videoOsdBottom .osdControls > .buttons {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Left Transport Island */
+.videoOsdBottom .osdControls > .buttons > div[dir="ltr"],
+.videoOsdBottom .osdControls > .buttons > div:first-child {
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    height: 3.1rem !important;
+    padding: 0 0.7rem !important;
+    gap: 0.3rem !important;
+    box-sizing: border-box !important;
+    background: rgba(12, 14, 20, 0.84) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Ends At Pill & Flex Spacer */
+.videoOsdBottom .osdControls > .buttons > .osdTimeText {
+    pointer-events: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 auto 0 0.75rem !important;
+    padding: 0 !important;
+}
+
+.videoOsdBottom .osdControls > .buttons > .osdTimeText:has(.endsAtText:not(:empty)) {
+    height: 2.3rem !important;
+    padding: 0 0.85rem !important;
+    box-sizing: border-box !important;
+    background: rgba(12, 14, 20, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 999px !important;
+}
+
+.videoOsdBottom .osdTimeText,
+.videoOsdBottom .endsAtText {
+    font-family: inherit !important;
+    font-size: 0.75rem !important;
+    font-variant-numeric: tabular-nums !important;
+    letter-spacing: 0.04em !important;
+    color: var(--apple-text-dim) !important;
+    white-space: nowrap !important;
+}
+
+/* Right Utility Island (seamless multi-sibling strip) */
+.videoOsdBottom .osdControls > .buttons > .osdTimeText ~ :not(.hide) {
+    pointer-events: auto !important;
+    height: 3.1rem !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    background: rgba(12, 14, 20, 0.84) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55) !important;
+}
+
+.videoOsdBottom .osdControls > .buttons > .osdTimeText ~ :not(.hide):not(.osdTimeText ~ :not(.hide) ~ *) {
+    border-left: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-top-left-radius: 18px !important;
+    border-bottom-left-radius: 18px !important;
+    padding-left: 0.45rem !important;
+}
+
+.videoOsdBottom .osdControls > .buttons > .osdTimeText ~ :not(.hide):not(:has(~ :not(.hide))) {
+    border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-top-right-radius: 18px !important;
+    border-bottom-right-radius: 18px !important;
+    padding-right: 0.45rem !important;
+}
+
+.videoOsdBottom .buttons button:not(.hide),
+.videoOsdBottom .buttons .paper-icon-button-light:not(.hide) {
+    background: transparent !important;
+    border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.45rem !important;
+    margin: 0 !important;
+    width: auto !important;
+    min-width: 2.35rem !important;
+    height: 2.35rem !important;
+    border-radius: 50% !important;
+    color: var(--apple-text) !important;
+    transition: transform 0.16s var(--apple-spring-fast), color 0.16s var(--apple-spring-fast), background 0.16s var(--apple-spring-fast) !important;
+}
+
+.videoOsdBottom .osdControls > .buttons > .osdTimeText ~ button:not(.hide),
+.videoOsdBottom .osdControls > .buttons > .osdTimeText ~ .paper-icon-button-light:not(.hide) {
+    background: rgba(12, 14, 20, 0.84) !important;
+    height: 3.1rem !important;
+    min-width: 2.65rem !important;
+    padding: 0 0.55rem !important;
+}
+
+.videoOsdBottom .buttons button:hover,
+.videoOsdBottom .buttons button:focus,
+.videoOsdBottom .buttons .paper-icon-button-light:hover,
+.videoOsdBottom .buttons .paper-icon-button-light:focus {
+    color: var(--apple-accent) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: none !important;
+}
+
+.videoOsdBottom .osdControls > .buttons > div button:hover,
+.videoOsdBottom .osdControls > .buttons > div button:focus,
+.videoOsdBottom .osdControls > .buttons > div .paper-icon-button-light:hover,
+.videoOsdBottom .osdControls > .buttons > div .paper-icon-button-light:focus {
+    transform: scale(1.08) !important;
+}
+
+.videoOsdBottom .osdControls > .buttons .btnPlayPause,
+.videoOsdBottom .osdControls > .buttons .btnPause {
+    background: var(--apple-accent) !important;
+    color: #ffffff !important;
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+
+.videoOsdBottom .osdControls > .buttons .btnPlayPause:hover,
+.videoOsdBottom .osdControls > .buttons .btnPlayPause:focus,
+.videoOsdBottom .osdControls > .buttons .btnPause:hover,
+.videoOsdBottom .osdControls > .buttons .btnPause:focus {
+    background: var(--apple-accent) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 18px rgba(0, 122, 255, 0.45) !important;
+    transform: scale(1.08) !important;
+}
+
+.videoOsdBottom .volumeButtons {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    padding: 0 0.45rem 0 0.25rem !important;
+}
+
+.videoOsdBottom .osdVolumeSliderContainer {
+    width: 72px !important;
+}
+
+.videoOsdBottom.videoOsdBottom-maincontrols .osdTextContainer.osdMainTextContainer,
+.videoOsdBottom.videoOsdBottom-maincontrols .osdTextContainer.osdSecondaryMediaInfo,
+.videoOsdBottom.videoOsdBottom-maincontrols .osdTitle,
+.osdMainTextContainer,
+.osdSecondaryMediaInfo,
+.osdTitle {
+    display: none !important;
+}
+
+/* ==========================================================================
+   Video Playback & OSD
+   ========================================================================== */
+
+/* 1. Native player overlay support (Desktop JMP / WebOS / Tizen):
+      Hardware video stream (MPV) renders underneath the webview, so html, body,
+      and inner wrappers stay transparent ONLY when no <video class="htmlvideoplayer"> exists.
+      Page overlay containers (#videoOsdPage) stay transparent over the video layer. */
+#videoOsdPage,
+.videoOsdPage,
+.videoOsdPage .pageContent,
+#videoOsdPage .pageContent {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+.videoPlayerContainer {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    z-index: 0 !important;
+}
+
+@supports not selector(:has(*)) {
+    html.transparentDocument,
+    html.transparentDocument body,
+    body.transparentDocument,
+    .transparentDocument,
+    .transparentDocument body,
+    .transparentDocument .backgroundContainer,
+    .transparentDocument .skinBody,
+    .transparentDocument .mainAnimatedPage,
+    .transparentDocument .pageContainer,
+    .transparentDocument #videoOsdPage,
+    .transparentDocument .videoPlayerContainer,
+    .transparentDocument .backdropContainer,
+    .transparentDocument .backdropImage,
+    .backgroundContainer-transparent,
+    .videoPlayerContainer {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+}
+
+/* 2. Suppress body overlays/pseudo-elements during video playback / transparent mode */
+html.transparentDocument body::before,
+html.transparentDocument body::after,
+html.transparentDocument::before,
+html.transparentDocument::after,
+body.transparentDocument::before,
+body.transparentDocument::after,
+.transparentDocument::before,
+.transparentDocument::after,
+.transparentDocument body::before,
+.transparentDocument body::after,
+.transparentDocument .backdropContainer,
+.transparentDocument .backdropImage,
+.backgroundContainer-transparent::before,
+.backgroundContainer-transparent::after {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+@supports selector(:has(*)) {
+    /* Web HTML5 playback canvas: Jellyfin Web adds .transparentDocument on <html>
+       even in browsers. Force pure #000000 behind pillarbox/letterbox bars
+       whenever <video class="htmlvideoplayer"> is present. */
+    html:has(.htmlvideoplayer),
+    body:has(.htmlvideoplayer),
+    html.transparentDocument:has(.htmlvideoplayer),
+    html.transparentDocument:has(.htmlvideoplayer) body,
+    body:has(.htmlvideoplayer) .videoPlayerContainer,
+    .videoPlayerContainer:has(.htmlvideoplayer),
+    .htmlvideoplayer,
+    .transparentDocument .htmlvideoplayer,
+    html.transparentDocument .htmlvideoplayer,
+    body.transparentDocument .htmlvideoplayer {
+        background: #000000 !important;
+        background-color: #000000 !important;
+    }
+
+    /* Native player overlay support (Desktop JMP / WebOS / Tizen):
+       No .htmlvideoplayer exists, so keep root and shell transparent for MPV/hardware video. */
+    html.transparentDocument:not(:has(.htmlvideoplayer)),
+    html.transparentDocument:not(:has(.htmlvideoplayer)) body,
+    body.transparentDocument:not(:has(.htmlvideoplayer)),
+    .transparentDocument:not(:has(.htmlvideoplayer)),
+    .transparentDocument:not(:has(.htmlvideoplayer)) .backgroundContainer,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .skinBody,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .mainAnimatedPage,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .pageContainer,
+    .transparentDocument:not(:has(.htmlvideoplayer)) #videoOsdPage,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .videoPlayerContainer,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .backdropContainer,
+    .transparentDocument:not(:has(.htmlvideoplayer)) .backdropImage,
+    .backgroundContainer-transparent:not(:has(.htmlvideoplayer)) {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* Page chrome: keep upper wrappers transparent so the video layer shows through,
+       using :not(.hide) so cached views do not leak transparent backgrounds after exit. */
+    body:has(#videoOsdPage:not(.hide)) .backgroundContainer,
+    body:has(#videoOsdPage:not(.hide)) .mainAnimatedPage,
+    body:has(#videoOsdPage:not(.hide)) .pageContainer,
+    body:has(#videoOsdPage:not(.hide)) .skinBody,
+    body:has(.htmlvideoplayer) .backgroundContainer,
+    body:has(.htmlvideoplayer) .mainAnimatedPage,
+    body:has(.htmlvideoplayer) .pageContainer,
+    body:has(.htmlvideoplayer) .skinBody {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* Backdrop overlay: fully hide during active video playback */
+    body:has(#videoOsdPage:not(.hide)) .backdropContainer,
+    body:has(#videoOsdPage:not(.hide)) .backdropImage,
+    body:has(.htmlvideoplayer) .backdropContainer,
+    body:has(.htmlvideoplayer) .backdropImage {
+        background: transparent !important;
+        background-color: transparent !important;
+        opacity: 0 !important;
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+
+    body:has(#videoOsdPage:not(.hide))::before,
+    body:has(#videoOsdPage:not(.hide))::after,
+    body:has(.htmlvideoplayer)::before,
+    body:has(.htmlvideoplayer)::after {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+}
+
+/* 3. HTML5 video player element (always opaque black letterbox/pillarbox backing) */
+.htmlvideoplayer {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Video OSD Header — Full-Width Floating Header Dock (mirrors Modular Pro timeline) */
+.skinHeader.osdHeader,
+.osdHeader,
+.videoOsdHeader,
+body:has(#videoOsdPage:not(.hide)) .skinHeader {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    padding: 1rem 2rem 0 !important;
+    min-height: unset !important;
+    height: auto !important;
+    pointer-events: none !important;
+    z-index: 1001 !important;
+    transition: transform 0.25s var(--apple-spring-fast), opacity 0.25s var(--apple-spring-fast) !important;
+}
+
+.osdHeader > .videoOsd-appBar,
+.videoOsdHeader > .videoOsd-appBar,
+.osdHeader > .headerTop:not(.hide),
+.videoOsdHeader > .headerTop:not(.hide) {
+    pointer-events: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 3.1rem !important;
+    min-height: 3.1rem !important;
+    padding: 0 0.85rem !important;
+    margin: 0 !important;
+    background: rgba(12, 14, 20, 0.84) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.52) !important;
+}
+
+.osdHeader .MuiIconButton-root,
+.osdHeader .paper-icon-button-light,
+.videoOsdHeader .MuiIconButton-root,
+.videoOsdHeader .paper-icon-button-light {
+    color: var(--apple-text) !important;
+    background: transparent !important;
+    transition: color 0.16s var(--apple-spring-fast), background 0.16s var(--apple-spring-fast) !important;
+}
+
+.osdHeader .MuiIconButton-root:hover,
+.osdHeader .MuiIconButton-root:focus,
+.osdHeader .paper-icon-button-light:hover,
+.osdHeader .paper-icon-button-light:focus,
+.videoOsdHeader .MuiIconButton-root:hover,
+.videoOsdHeader .MuiIconButton-root:focus,
+.videoOsdHeader .paper-icon-button-light:hover,
+.videoOsdHeader .paper-icon-button-light:focus {
+    color: var(--apple-accent) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.layout-tv .skinHeader.osdHeader,
+.layout-tv .osdHeader,
+.layout-tv .videoOsdHeader,
+.layout-tv:has(#videoOsdPage:not(.hide)) .skinHeader {
+    padding: 2.2vh var(--tv-pad) 0 !important;
+}
+
+.layout-tv .osdHeader > .videoOsd-appBar,
+.layout-tv .videoOsdHeader > .videoOsd-appBar,
+.layout-tv .osdHeader > .headerTop:not(.hide),
+.layout-tv .videoOsdHeader > .headerTop:not(.hide) {
+    height: 3.6rem !important;
+    min-height: 3.6rem !important;
+    padding: 0 1.2rem !important;
+}
+
+@media (max-width: 768px) {
+    .skinHeader.osdHeader,
+    .osdHeader,
+    .videoOsdHeader,
+    body:has(#videoOsdPage:not(.hide)) .skinHeader {
+        padding: 0.75rem 0.75rem 0 !important;
+    }
+
+    .osdHeader > .videoOsd-appBar,
+    .videoOsdHeader > .videoOsd-appBar,
+    .osdHeader > .headerTop:not(.hide),
+    .videoOsdHeader > .headerTop:not(.hide) {
+        height: 2.85rem !important;
+        min-height: 2.85rem !important;
+        padding: 0 0.65rem !important;
+    }
+}
+
+.osdHeader.osdHeader-hidden,
+.videoOsdHeader.videoOsdHeader-hidden,
+.skinHeader.osdHeader.osdHeader-hidden {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.osdHeader .headerLeft,
+.videoOsdHeader .headerLeft,
+body:has(#videoOsdPage:not(.hide)) .skinHeader .headerLeft {
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.01em !important;
+    color: var(--apple-text) !important;
+}
+
+.btnVideoOsdBack {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-radius: 50% !important;
+    transition: transform 0.2s var(--apple-spring-fast) !important;
+}
+
+.btnVideoOsdBack:focus,
+.btnVideoOsdBack:hover {
+    transform: scale(1.1) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.osdControls .paper-icon-button-light {
+    border-radius: 50% !important;
+    background: transparent !important;
+    transition: transform 0.2s ease, background 0.2s ease !important;
+}
+
+.osdControls .paper-icon-button-light:focus,
+.osdControls .paper-icon-button-light:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.1) !important;
+}
+
+.osdControls .btnPlayPause,
+.osdControls .btnPause {
+    transform: scale(1.3) !important;
+}
+
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Default: outline off. :not(:focus-visible) is invalid on Selectors-3
+   engines (older Tizen WebKit); the whole rule drops. Unconditional
+   suppression + @supports-gated re-enable keeps outlines sane everywhere. */
+*:focus {
+    outline: none !important;
+}
+
+@supports selector(:focus-visible) {
+    *:focus-visible {
+        outline: 2px solid var(--apple-accent) !important;
+        outline-offset: 2px !important;
+    }
+}
+
+.content-loader {
+    animation: appleFadeIn 0.8s ease-out !important;
+}
+
+.button-flat:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--apple-radius) !important;
+}
+
+.subtitles,
+.videoSubtitles,
+.libassjs-canvas-parent,
+.JASSUB,
+.shaka-text-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1001 !important;
+}
+
+.videoSubtitlesInner,
+.videoSecondarySubtitlesInner,
+.subtitle-container {
+    position: absolute !important;
+    bottom: max(6rem, var(--subtitle-bottom, 6rem)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    pointer-events: none !important;
+    translate: 0 var(--sub-offset, 0px) !important;
+    transition: transform 0.25s var(--apple-spring-fast), translate 0.25s var(--apple-spring-fast) !important;
+}
+
+/* Jellyfin caps the inner box at max-width:70%; with left:0 + width:100% it hugged the left edge on TV, so size it to its text and centre it */
+.videoSubtitles .videoSubtitlesInner,
+.videoSubtitles .videoSecondarySubtitlesInner,
+.videoSubtitlesInner.videoSubtitlesInner,
+.videoSecondarySubtitlesInner.videoSecondarySubtitlesInner {
+    width: fit-content !important;
+    max-width: min(70%, calc(100vw - 4rem)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+.libassjs-canvas-parent,
+.JASSUB {
+    transform: none !important;
+    translate: none !important;
+}
+
+.libassjs-canvas,
+.libassjs-canvas-parent canvas,
+.JASSUB canvas,
+.videoPlayerContainer > canvas {
+    translate: 0 var(--sub-offset, 0px) !important;
+    transition: transform 0.25s var(--apple-spring-fast), translate 0.25s var(--apple-spring-fast) !important;
+}
+
+.htmlvideoplayer::-webkit-media-text-track-container {
+    translate: 0 var(--sub-offset, 0px) !important;
+    transition: transform 0.25s var(--apple-spring-fast), translate 0.25s var(--apple-spring-fast) !important;
+}
+
+/* Lift subtitles when OSD visible. transform:translateY is GPU-accelerated and
+   doesn't trigger layout. Libass/JASSUB wrapper stays untransformed so resize()
+   measuring keeps exact video coordinates while inner canvases shift up. */
+.videoOsd-visible .videoSubtitlesInner,
+.videoOsd-visible .videoSecondarySubtitlesInner,
+.videoOsd-visible .subtitle-container,
+.videoOsd-visible .shaka-text-container,
+.showing-osd .videoSubtitlesInner,
+.showing-osd .videoSecondarySubtitlesInner,
+.showing-osd .subtitle-container,
+.showing-osd .shaka-text-container {
+    transform: translateY(-11rem) !important;
+}
+
+.videoOsd-visible .libassjs-canvas,
+.videoOsd-visible .libassjs-canvas-parent canvas,
+.videoOsd-visible .JASSUB canvas,
+.videoOsd-visible .videoPlayerContainer > canvas,
+.showing-osd .libassjs-canvas,
+.showing-osd .libassjs-canvas-parent canvas,
+.showing-osd .JASSUB canvas,
+.showing-osd .videoPlayerContainer > canvas {
+    transform: translateY(-12rem) !important;
+}
+
+.videoOsd-visible .htmlvideoplayer::-webkit-media-text-track-container,
+.showing-osd .htmlvideoplayer::-webkit-media-text-track-container {
+    transform: translateY(-12rem) !important;
+}
+
+@supports selector(:has(*)) {
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSubtitlesInner,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSecondarySubtitlesInner,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .subtitle-container,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .shaka-text-container {
+        transform: translateY(-11rem) !important;
+    }
+
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas-parent canvas,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .JASSUB canvas,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoPlayerContainer > canvas {
+        transform: translateY(-12rem) !important;
+    }
+
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .htmlvideoplayer::-webkit-media-text-track-container {
+        transform: translateY(-12rem) !important;
+        padding-bottom: 12rem !important;
+    }
+}
+
+.layout-tv.videoOsd-visible .videoSubtitlesInner,
+.layout-tv.videoOsd-visible .videoSecondarySubtitlesInner,
+.layout-tv.videoOsd-visible .subtitle-container,
+.layout-tv.videoOsd-visible .shaka-text-container,
+.layout-tv.showing-osd .videoSubtitlesInner,
+.layout-tv.showing-osd .videoSecondarySubtitlesInner,
+.layout-tv.showing-osd .subtitle-container,
+.layout-tv.showing-osd .shaka-text-container {
+    transform: translateY(-14.5rem) !important;
+}
+
+.layout-tv.videoOsd-visible .libassjs-canvas,
+.layout-tv.videoOsd-visible .libassjs-canvas-parent canvas,
+.layout-tv.videoOsd-visible .JASSUB canvas,
+.layout-tv.videoOsd-visible .videoPlayerContainer > canvas,
+.layout-tv.showing-osd .libassjs-canvas,
+.layout-tv.showing-osd .libassjs-canvas-parent canvas,
+.layout-tv.showing-osd .JASSUB canvas,
+.layout-tv.showing-osd .videoPlayerContainer > canvas {
+    transform: translateY(-14.5rem) !important;
+}
+
+.layout-tv.videoOsd-visible .htmlvideoplayer::-webkit-media-text-track-container,
+.layout-tv.showing-osd .htmlvideoplayer::-webkit-media-text-track-container {
+    transform: translateY(-14.5rem) !important;
+}
+
+@supports selector(:has(*)) {
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSubtitlesInner,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSecondarySubtitlesInner,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .subtitle-container,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .shaka-text-container {
+        transform: translateY(-14.5rem) !important;
+    }
+
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas-parent canvas,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .JASSUB canvas,
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoPlayerContainer > canvas {
+        transform: translateY(-14.5rem) !important;
+    }
+
+    .layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .htmlvideoplayer::-webkit-media-text-track-container {
+        transform: translateY(-14.5rem) !important;
+        padding-bottom: 14.5rem !important;
+    }
+}
+
+.subtitles span,
+.videoSubtitles span,
+.videoSubtitlesInner span,
+.videoSecondarySubtitlesInner span,
+.subtitle-container span,
+::cue {
+    color: var(--sub-color, var(--apple-text, #ffffff)) !important;
+    background-color: var(--sub-bg, rgba(0, 0, 0, 0.5)) !important;
+    font-size: var(--sub-size, 100%) !important;
+    padding: 0.2em 0.5em !important;
+    border-radius: 6px !important;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.9) !important;
+    font-weight: 500 !important;
+    font-family: var(--apple-font) !important;
+    display: inline-block !important;
+    vertical-align: bottom !important;
+    margin: 0 auto !important;
+    box-decoration-break: clone !important;
+    -webkit-box-decoration-break: clone !important;
+}
+
+.subtitles span span,
+.videoSubtitles span span,
+.videoSubtitlesInner span span,
+.videoSecondarySubtitlesInner span span,
+.subtitle-container span span {
+    font-size: inherit !important;
+}
+
+.subtitles div,
+.videoSubtitles div,
+.videoSubtitlesInner div,
+.subtitle-container div {
+    background-color: transparent !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Mobile and Tablet Optimizations */
+@media (max-width: 1000px) {
+    :root {
+        /* Backdrop-filter is expensive on low-power mobile GPUs and causes
+           UI freezes; disable it globally and re-enable only via the
+           --apple-blur-strong token on exception surfaces below. */
+        --apple-blur: none;
+        --apple-blur-strong: blur(10px);
+    }
+
+    .portraitCard,
+    .squareCard {
+        width: 140px !important;
+    }
+
+    .backdropCard {
+        width: 260px !important;
+    }
+
+    .card {
+        margin: 0.5em !important;
+    }
+
+    .detailPagePrimaryContainer .card,
+    .detailImageContainer .card {
+        width: 180px !important;
+    }
+
+    .skinHeader,
+    .header,
+    header,
+    .app-header,
+    .header-top,
+    .skinHeader-withBackground,
+    .header-withBackground,
+    .skinHeader.semiTransparent,
+    .skinHeader-semiTransparent,
+    .headerSemiTransparent,
+    .header-semiTransparent,
+    header.semiTransparent,
+    header.withBackground,
+    header.header-scrolled {
+        position: absolute !important;
+        min-height: 3.5em !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* Exceptions: keep a light blur for these high-visibility surfaces */
+    .mainDrawer,
+    .dialog,
+    .emby-tab-button.emby-tab-button-active {
+        backdrop-filter: var(--apple-blur-strong) !important;
+        -webkit-backdrop-filter: var(--apple-blur-strong) !important;
+    }
+
+    .skinHeader .headerLeft img,
+    .skinHeader .pageTitle img,
+    .skinHeader .headerLogo,
+    .skinHeader .logo,
+    .skinHeader .pageTitleWithLogo {
+        height: 24px !important;
+        min-width: 80px !important;
+    }
+
+    .emby-tab-button {
+        padding: 0.4em 1em !important;
+        font-size: 0.9em !important;
+        margin: 0 0.2em !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols {
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        padding: 0 0.75rem 0.85rem !important;
+        border-radius: 0 !important;
+        height: auto !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls {
+        gap: 0.5rem !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .flex.flex-direction-row {
+        padding: 0.45rem 0.8rem !important;
+        gap: 0.6rem !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > div[dir="ltr"],
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > div:first-child {
+        height: 2.75rem !important;
+        padding: 0 0.45rem !important;
+        gap: 0.15rem !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText {
+        display: none !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ :not(.hide) {
+        height: 2.75rem !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ button:not(.hide),
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ .paper-icon-button-light:not(.hide) {
+        height: 2.75rem !important;
+        min-width: 2.3rem !important;
+        padding: 0 0.35rem !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .volumeButtons {
+        display: none !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > div:first-child {
+        margin-right: auto !important;
+    }
+
+    .videoOsdBottom.videoOsdBottom-maincontrols .volumeButtons,
+    .videoOsdBottom.videoOsdBottom-maincontrols .osdVolumeSliderContainer {
+        display: none !important;
+    }
+
+    /* Mobile OSD stacks into two rows: slider + buttons. Replace the desktop
+       -11rem/-12rem lift cleanly with -13rem for HTML, canvas, and WebVTT
+       cues while keeping the outer .libassjs-canvas-parent/.JASSUB wrapper untransformed. */
+    body.videoOsd-visible .videoSubtitlesInner,
+    body.videoOsd-visible .videoSecondarySubtitlesInner,
+    body.videoOsd-visible .subtitle-container,
+    body.osd-visible .videoSubtitlesInner,
+    body.osd-visible .videoSecondarySubtitlesInner,
+    body.osd-visible .subtitle-container,
+    body.showing-osd .videoSubtitlesInner,
+    body.showing-osd .videoSecondarySubtitlesInner,
+    body.showing-osd .subtitle-container {
+        bottom: max(4.5rem, var(--subtitle-bottom, 4.5rem)) !important;
+        transform: translateY(-13rem) !important;
+    }
+
+    body.videoOsd-visible .libassjs-canvas,
+    body.videoOsd-visible .libassjs-canvas-parent canvas,
+    body.videoOsd-visible .JASSUB canvas,
+    body.videoOsd-visible .videoPlayerContainer > canvas,
+    body.osd-visible .libassjs-canvas,
+    body.osd-visible .libassjs-canvas-parent canvas,
+    body.osd-visible .JASSUB canvas,
+    body.osd-visible .videoPlayerContainer > canvas,
+    body.showing-osd .libassjs-canvas,
+    body.showing-osd .libassjs-canvas-parent canvas,
+    body.showing-osd .JASSUB canvas,
+    body.showing-osd .videoPlayerContainer > canvas {
+        transform: translateY(-13rem) !important;
+    }
+
+    body.videoOsd-visible .htmlvideoplayer::-webkit-media-text-track-container,
+    body.osd-visible .htmlvideoplayer::-webkit-media-text-track-container,
+    body.showing-osd .htmlvideoplayer::-webkit-media-text-track-container {
+        transform: translateY(-13rem) !important;
+    }
+
+    @supports selector(:has(*)) {
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSubtitlesInner,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoSecondarySubtitlesInner,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .subtitle-container,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .shaka-text-container {
+            bottom: max(4.5rem, var(--subtitle-bottom, 4.5rem)) !important;
+            transform: translateY(-13rem) !important;
+        }
+
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .libassjs-canvas-parent canvas,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .JASSUB canvas,
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .videoPlayerContainer > canvas {
+            transform: translateY(-13rem) !important;
+        }
+
+        body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .htmlvideoplayer::-webkit-media-text-track-container {
+            transform: translateY(-13rem) !important;
+        }
+    }
+
+    body:not(:has(#videoOsdPage:not(.hide))) .view,
+    body:not(:has(#videoOsdPage:not(.hide))) .mainAnimatedPages,
+    body:not(:has(#videoOsdPage:not(.hide))) .skinBody,
+    .page-current:not(#videoOsdPage) {
+        padding-top: 4em !important;
+    }
+
+    .doc-loading-indicator {
+        z-index: 900 !important;
+    }
+
+    .content-loader {
+        animation: appleFadeIn 0.4s ease-out forwards !important;
+    }
+
+    /* Fix for 'frozen' UI: Ensure dialogs and errors are ALWAYS on top of the loading screen */
+    .dialogContainer,
+    .dialog,
+    .actionSheet,
+    .menu,
+    .toast,
+    .alert {
+        z-index: 200000 !important;
+    }
+
+    /* Enhance progress slider for touch */
+    .sliderContainer {
+        height: 12px !important;
+        margin: 10px 0 !important;
+    }
+
+    .mdl-slider::-webkit-slider-thumb {
+        transform: scale(1.4) !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Ensure background container doesn't block loading screens */
+.doc-loading-indicator {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    z-index: 900 !important;
+}
+
+/* Glass tags for metadata badges */
+.mediaInfoItem,
+.starRatingContainer,
+.itemTag,
+.itemCommunityRating {
+    background: var(--apple-glass) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    padding: 0.2em 0.8em !important;
+    font-size: 0.85em !important;
+    font-weight: 600 !important;
+    color: var(--apple-text-dim) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3em !important;
+}
+
+/* ========================================================================
+   MODERN LAYOUT (Jellyfin 12+, React/MUI chrome)
+   Dual selectors: direct .MuiX-root plus [class*="X-root"] handle MUI's
+   dynamically-hashed class names on both Modern (default) and Legacy modes.
+   ======================================================================== */
+
+/* App bar / toolbar — frosted bar on AppBar; toolbars inside remain transparent */
+.MuiAppBar-root,
+[class*="AppBar-root"] {
+    background-color: rgba(20, 20, 22, 0.82) !important;
+    background-image: none !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--apple-text) !important;
+    min-height: 4em !important;
+}
+
+.MuiToolbar-root,
+[class*="Toolbar-root"] {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border-bottom: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: var(--apple-text) !important;
+}
+
+.MuiAppBar-root .MuiToolbar-root,
+.MuiAppBar-root [class*="Toolbar-root"] {
+    border-bottom: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Native <select> options & stock Jellyfin #00a4dc accent indicators */
+select option,
+.emby-select option {
+    background-color: #16161a !important;
+    color: var(--apple-text) !important;
+}
+
+.countIndicator,
+.playedIndicator,
+.mediaSourceIndicator,
+.fullSyncIndicator {
+    background-color: var(--apple-accent) !important;
+    color: #fff !important;
+}
+
+.itemProgressBarForeground {
+    background-color: var(--apple-accent) !important;
+}
+
+.mdl-spinner__layer-1,
+.mdl-spinner__layer-2,
+.mdl-spinner__layer-3,
+.mdl-spinner__layer-4,
+.progressring-spiner {
+    border-color: var(--apple-accent) !important;
+}
+
+.listItemIcon:not(.listItemIcon-transparent) {
+    background-color: var(--apple-accent) !important;
+    color: #fff !important;
+}
+
+.alphaPickerButton {
+    color: var(--apple-text-dim) !important;
+}
+
+.alphaPickerButton-selected {
+    color: var(--apple-accent) !important;
+    font-weight: 700 !important;
+}
+
+.alphaPickerButton-tv:focus {
+    background-color: var(--apple-accent) !important;
+    color: #fff !important;
+}
+
+.selectionCommandsPanel {
+    background: rgba(20, 20, 24, 0.92) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    color: var(--apple-text) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.upNextDialog-countdownText,
+.buttonActive,
+.metadataSidebarIcon {
+    color: var(--apple-accent) !important;
+}
+
+.emby-checkbox:checked + span + .checkboxOutline {
+    background-color: var(--apple-accent) !important;
+    border-color: var(--apple-accent) !important;
+}
+
+.MuiAppBar-root .MuiToolbar-root + .MuiToolbar-root,
+.MuiAppBar-root [class*="Toolbar-root"] + [class*="Toolbar-root"] {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Drawer — side nav / user menu */
+.MuiDrawer-paper,
+[class*="Drawer-paper"] {
+    background-color: rgba(10, 10, 10, 0.85) !important;
+    background-image: none !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 var(--apple-radius) var(--apple-radius) 0 !important;
+    color: var(--apple-text) !important;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dialogs / menus / popovers */
+.MuiDialog-paper,
+.MuiMenu-paper,
+.MuiPopover-paper,
+.MuiAutocomplete-paper,
+.MuiPaper-root,
+[class*="Dialog-paper"],
+[class*="Menu-paper"] {
+    background-color: rgba(15, 15, 15, 0.9) !important;
+    background-image: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--apple-radius) !important;
+    color: var(--apple-text) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    box-shadow: var(--apple-shadow) !important;
+}
+
+.MuiDialogTitle-root {
+    color: var(--apple-text) !important;
+    font-weight: 700 !important;
+}
+
+/* Menu items */
+.MuiMenuItem-root,
+.MuiListItemButton-root {
+    color: var(--apple-text) !important;
+    border-radius: 8px !important;
+    margin: 0.1em 0.4em !important;
+    transition: background 0.15s ease !important;
+}
+
+.MuiMenuItem-root:focus,
+.MuiMenuItem-root:hover,
+.MuiListItemButton-root:focus,
+.MuiListItemButton-root:hover,
+.MuiMenuItem-root.Mui-selected {
+    background: var(--apple-glass) !important;
+}
+
+/* Buttons: generic + contained vs text variants */
+.MuiButton-root,
+[class*="Button-root"] {
+    font-family: var(--apple-font) !important;
+    border-radius: 30px !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+    transition: all 0.2s var(--apple-spring-fast) !important;
+}
+
+.MuiButton-contained {
+    background: var(--apple-glass-heavy) !important;
+    color: var(--apple-text) !important;
+    backdrop-filter: var(--apple-blur) !important;
+    -webkit-backdrop-filter: var(--apple-blur) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.MuiButton-contained:focus,
+.MuiButton-contained:hover {
+    background: var(--apple-text) !important;
+    color: #000 !important;
+    transform: scale(1.05) !important;
+}
+
+.MuiButton-text {
+    color: var(--apple-text) !important;
+}
+
+.MuiButton-text:focus,
+.MuiButton-text:hover {
+    background: var(--apple-glass) !important;
+    border-radius: var(--apple-radius) !important;
+}
+
+.MuiButton-root:active,
+[class*="Button-root"]:active {
+    transform: scale(0.95) !important;
+}
+
+/* Icon buttons — profile avatar, header actions, and circular icons */
+.paper-icon-button-light,
+.headerButton,
+.headerUserButton,
+.MuiIconButton-root,
+[class*="IconButton-root"] {
+    color: var(--apple-text) !important;
+    border-radius: 50% !important;
+}
+
+.paper-icon-button-light:focus,
+.paper-icon-button-light:hover,
+.headerButton:focus,
+.headerButton:hover,
+.headerUserButton:focus,
+.headerUserButton:hover,
+.MuiIconButton-root:focus,
+.MuiIconButton-root:hover,
+[class*="IconButton-root"]:focus,
+[class*="IconButton-root"]:hover {
+    background: var(--apple-glass) !important;
+    border-radius: 50% !important;
+    transform: scale(1.1) !important;
+}
+
+.headerUserButton,
+.headerUserButtonRound,
+.headerButton.headerUserButton {
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    aspect-ratio: 1 / 1 !important;
+}
+
+/* Tabs */
+.MuiTab-root,
+[class*="Tab-root"] {
+    font-family: var(--apple-font) !important;
+    font-weight: 600 !important;
+    color: var(--apple-text-dim) !important;
+    border-radius: 40px !important;
+    margin: 0 0.25em !important;
+    padding: 0.6em 1.5em !important;
+    min-height: unset !important;
+    min-width: unset !important;
+    text-transform: none !important;
+    transition: all 0.4s var(--apple-spring-fast) !important;
+}
+
+.MuiTab-root:focus,
+.MuiTab-root:hover {
+    color: var(--apple-text) !important;
+    background: var(--apple-glass) !important;
+    transform: scale(1.05) !important;
+}
+
+.MuiTab-root.Mui-selected,
+[class*="Tab-root"][class*="selected"] {
+    color: var(--apple-text) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.MuiTabs-indicator,
+[class*="Tabs-indicator"] {
+    display: none !important;
+}
+
+/* Cards */
+.MuiCard-root,
+.MuiCardMedia-root,
+[class*="Card-root"],
+[class*="CardMedia-root"] {
+    border-radius: var(--apple-radius) !important;
+    overflow: hidden !important;
+    transition: transform 0.5s var(--apple-spring-bouncy), box-shadow 0.3s ease !important;
+}
+
+/* Sticky library header (JF12 merged bar) */
+.stickyLibraryHeader,
+[class*="stickyLibraryHeader"],
+[class*="libraryHeader"] {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* MUI scrollbar override for JF12 surfaces */
+.MuiPaper-root,
+[class*="Paper-root"] {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent !important;
+}
+
+/* Detail ribbon — JF12 uses .detailRibbon for the metadata bar; styled above with frosted glass */
+
+/* Form controls */
+.MuiFilledInput-root,
+.MuiOutlinedInput-root,
+.MuiInputBase-root,
+[class*="FilledInput-root"] {
+    background-color: var(--apple-glass) !important;
+    border-radius: var(--apple-radius) !important;
+    color: var(--apple-text) !important;
+    font-family: var(--apple-font) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.MuiFilledInput-root::before,
+.MuiFilledInput-root::after,
+.MuiOutlinedInput-notchedOutline {
+    display: none !important;
+}
+
+.MuiFilledInput-root.Mui-focused,
+.MuiOutlinedInput-root.Mui-focused,
+[class*="FilledInput-root"][class*="focused"] {
+    border-color: var(--apple-accent) !important;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3) !important;
+}
+
+.MuiSelect-select,
+.MuiInputBase-input {
+    color: var(--apple-text) !important;
+}
+
+.MuiInputLabel-root {
+    color: var(--apple-text-dim) !important;
+}
+
+/* Dividers — replaces .listItem-border */
+.MuiDivider-root {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Typography defaults */
+.MuiTypography-root {
+    font-family: var(--apple-font) !important;
+}
+
+/* TV layout bumps on Modern chrome */
+.layout-tv .MuiButton-root {
+    font-size: 1.2em !important;
+    padding: 0.7em 1.8em !important;
+}
+
+.layout-tv .MuiIconButton-root {
+    padding: 0.6em !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    /* Shorten animations/transitions only; keep iteration-count so infinite
+       loaders (spinners) still cycle, otherwise they freeze mid-draw. */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    /* scroll-behavior only applies to scrollable boxes; pseudo-elements can't scroll */
+    html {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* TV layout (Jellyfin 12): safe margins, viewport-fluid cards, compact card text */
+.layout-tv {
+    --tv-pad: 5vw;
+    --tv-gap: 1.4vw;
+    --tv-card-w: calc((100vw - 2 * var(--tv-pad) - 5 * var(--tv-gap)) / 6);
+    --tv-wide-w: calc((100vw - 2 * var(--tv-pad) - 3 * var(--tv-gap)) / 4);
+}
+
+.layout-tv .skinHeader,
+.layout-tv .skinHeader-withBackground,
+.layout-tv .skinHeader.semiTransparent,
+.layout-tv .MuiAppBar-root {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    height: auto !important;
+    min-height: unset !important;
+    overflow: visible !important;
+    contain: none !important;
+}
+
+.layout-tv .headerTop {
+    padding-top: 0.8em !important;
+    padding-bottom: 0.4em !important;
+    padding-left: var(--tv-pad) !important;
+    padding-right: var(--tv-pad) !important;
+    overflow: visible !important;
+    contain: none !important;
+}
+
+.layout-tv .headerTabs,
+.layout-tv .sectionTabs {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.8em !important;
+    padding-left: var(--tv-pad) !important;
+    padding-right: var(--tv-pad) !important;
+    overflow: visible !important;
+    contain: none !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.layout-tv .emby-tabs-slider,
+.layout-tv .emby-tabs-scroll-container,
+.layout-tv .MuiTabs-root,
+.layout-tv .MuiTabs-scroller {
+    overflow: visible !important;
+    contain: none !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.layout-tv .emby-tab-button,
+.layout-tv .MuiTab-root {
+    font-size: 1.05em !important;
+    margin: 0 0.35em !important;
+    padding: 0.55em 1.3em !important;
+    height: auto !important;
+    min-height: unset !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+.layout-tv .padded-left {
+    padding-left: var(--tv-pad);
+}
+
+.layout-tv .padded-right {
+    padding-right: var(--tv-pad);
+}
+
+.layout-tv .sectionTitleContainer,
+.layout-tv .sectionTitle {
+    text-align: left !important;
+}
+
+.layout-tv .sectionTitleContainer {
+    padding-left: var(--tv-pad) !important;
+    margin-bottom: 1.6vh !important;
+}
+
+.layout-tv .verticalSection {
+    margin-bottom: 3vh !important;
+}
+
+.layout-tv .itemsContainer {
+    gap: 3vh var(--tv-gap) !important;
+}
+
+.layout-tv .itemsContainer.scrollSlider {
+    padding-left: var(--tv-pad) !important;
+    padding-right: var(--tv-pad) !important;
+}
+
+.layout-tv .emby-scroller {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.layout-tv .detailPageSecondaryContainer {
+    padding-left: 3.3% !important;
+}
+
+.layout-tv .detailVerticalSection .emby-scroller,
+.layout-tv .detailVerticalSection .itemsContainer,
+.layout-tv .detailVerticalSection .scrollSlider {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.layout-tv .itemsContainer.vertical-wrap {
+    padding-left: var(--tv-pad) !important;
+    padding-right: var(--tv-pad) !important;
+}
+
+.layout-tv .card {
+    margin: 0 !important;
+}
+
+.layout-tv .portraitCard,
+.layout-tv .overflowPortraitCard,
+.layout-tv .squareCard,
+.layout-tv .overflowSquareCard {
+    width: var(--tv-card-w) !important;
+}
+
+.layout-tv .backdropCard,
+.layout-tv .overflowBackdropCard {
+    width: var(--tv-wide-w) !important;
+}
+
+.layout-tv .cardText {
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+    margin-top: 0.35em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.layout-tv .cardText-secondary {
+    font-size: 0.9rem !important;
+    opacity: 0.7;
+}
+
+/* TV player controls — Modular Pro (Split-Dock Dual Islands) */
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols {
+    padding: 0 var(--tv-pad) 2.6vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls {
+    gap: 1.4vh !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .flex.flex-direction-row {
+    padding: 0.7rem 1.4rem !important;
+    gap: 1.2vw !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdPositionText,
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdDurationText {
+    display: block !important;
+    font-size: 1.05rem !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons {
+    justify-content: flex-start !important;
+    gap: 0 !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > div[dir="ltr"],
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > div:first-child {
+    height: 3.6rem !important;
+    padding: 0 0.95rem !important;
+    gap: 0.55rem !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText {
+    order: 0 !important;
+    margin: 0 auto 0 1vw !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ :not(.hide) {
+    height: 3.6rem !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ button:not(.hide),
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons > .osdTimeText ~ .paper-icon-button-light:not(.hide) {
+    height: 3.6rem !important;
+    min-width: 3.1rem !important;
+    padding: 0 0.7rem !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons .btnPlayPause,
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls > .buttons .btnPause {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdControls .paper-icon-button-light {
+    margin: 0 !important;
+}
+
+.layout-tv .videoOsdBottom.videoOsdBottom-maincontrols .osdVolumeSliderContainer {
+    flex: 0 0 7.5vw !important;
+    width: 7.5vw !important;
+}
+
+/* Detail header: the title block sits in normal flow under the buttons, so the ribbon grows with it (original titles, series names)
+   and the content below is pushed down instead of being overlapped. The band look is drawn on ::before behind the button strip only. */
+.layout-desktop .detailRibbon.detailRibbon,
+.layout-tv .detailRibbon.detailRibbon {
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+    align-items: flex-start !important;
+    height: auto !important;
+    background: none !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.layout-desktop .detailRibbon.detailRibbon::before,
+.layout-tv .detailRibbon.detailRibbon::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 7.2em;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(24, 24, 28, 0.85) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.layout-desktop .detailRibbon.detailRibbon .mainDetailButtons,
+.layout-tv .detailRibbon.detailRibbon .mainDetailButtons {
+    order: 1 !important;
+    width: 100% !important;
+    height: 7.2em !important;
+    box-sizing: border-box !important;
+}
+
+.layout-desktop .detailRibbon.detailRibbon .infoWrapper,
+.layout-tv .detailRibbon.detailRibbon .infoWrapper {
+    position: static !important;
+    order: 2 !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0.8em 3.3% 0.4em 0 !important;
+}
+
+.layout-desktop [dir=rtl] .detailRibbon.detailRibbon .infoWrapper,
+.layout-tv [dir=rtl] .detailRibbon.detailRibbon .infoWrapper {
+    padding: 0.8em 0 0.4em 3.3% !important;
+}
+
+.layout-desktop .detailPagePrimaryContainer.detailPagePrimaryContainer,
+.layout-tv .detailPagePrimaryContainer.detailPagePrimaryContainer {
+    min-height: calc(min(540px, 28.5vw) - 5.5em) !important;
+    padding-bottom: 2.5em !important;
+}
+
+.layout-desktop .detailPagePrimaryContent.detailPagePrimaryContent,
+.layout-tv .detailPagePrimaryContent.detailPagePrimaryContent {
+    padding-top: 1.25em !important;
+}
+
+/* ============================================================================
+ * 1. IN-PLAYER EXPERIENCE (Skip Intro, Up Next, Trickplay & Chapter Bubble)
+ * ============================================================================ */
+
+/* Skip Intro / Credits pill — frosted glass floating above scrubber */
+.skip-button-container {
+    bottom: 5.5rem !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10002 !important;
+    transition: transform 0.25s var(--apple-spring-fast), opacity 0.25s ease !important;
+}
+
+.skip-button {
+    margin-left: auto !important;
+    margin-right: 3rem !important;
+    padding: 0.7rem 1.35rem !important;
+    border-radius: 999px !important;
+    background: rgba(20, 20, 24, 0.65) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--apple-text) !important;
+    font-family: var(--apple-font) !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+    transition: transform 0.2s var(--apple-spring-fast), background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.skip-button:hover,
+.skip-button:focus-visible {
+    background: var(--apple-accent) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    color: #ffffff !important;
+    transform: scale(1.03) !important;
+}
+
+.skip-button-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.videoOsd-visible .skip-button-container,
+body.osd-visible .skip-button-container,
+body.showing-osd .skip-button-container,
+body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .skip-button-container {
+    transform: translateY(-4.5rem) !important;
+}
+
+/* Up Next card — rounded frosted glass corner overlay */
+.upNextContainer.hide,
+.upNextDialog.hide {
+    display: none !important;
+}
+
+.upNextContainer:not(.hide),
+.upNextContainer.upNextDialog:not(.hide) {
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(16, 16, 20, 0.78) !important;
+    backdrop-filter: blur(36px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(36px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: var(--apple-radius-large) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65) !important;
+    color: var(--apple-text) !important;
+    font-family: var(--apple-font) !important;
+    padding: 1.25rem 1.4rem !important;
+    width: min(28rem, calc(100vw - 3rem)) !important;
+    max-width: calc(100vw - 3rem) !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    z-index: 10002 !important;
+    transition: opacity 0.3s ease, transform 0.28s var(--apple-spring-fast) !important;
+}
+
+.upNextContainer > div,
+.upNextDialog > .flex {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.upNextDialog-nextVideoText {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    color: var(--apple-text-dim) !important;
+    margin-bottom: 0.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+.upNextDialog-countdownText {
+    color: var(--apple-accent) !important;
+    font-weight: 700 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.upNextDialog-title {
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    color: var(--apple-text) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    line-height: 1.3 !important;
+    margin: 0.15rem 0 0.45rem !important;
+}
+
+.upNextDialog-mediainfo {
+    color: var(--apple-text-dim) !important;
+    font-size: 0.85rem !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 0.35rem 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.upNextDialog-mediainfo .mediaInfoItem {
+    margin: 0 !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.upNextDialog-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    margin-top: 1rem !important;
+    gap: 0.6rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.upNextDialog-button {
+    border-radius: 999px !important;
+    padding: 0.55rem 1.2rem !important;
+    font-weight: 600 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    transition: transform 0.18s var(--apple-spring-fast), background 0.18s ease !important;
+}
+
+.upNextDialog-button.btnStartNow {
+    background: var(--apple-accent) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+.upNextDialog-button.btnHide {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: var(--apple-text) !important;
+}
+
+.upNextDialog-button:hover,
+.upNextDialog-button:focus-visible {
+    transform: scale(1.03) !important;
+}
+
+body.videoOsd-visible .upNextContainer:not(.hide),
+body.osd-visible .upNextContainer:not(.hide),
+body.showing-osd .upNextContainer:not(.hide),
+body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .upNextContainer:not(.hide) {
+    transform: translateY(-9rem) !important;
+}
+
+.layout-tv .upNextContainer,
+.layout-tv .upNextContainer.upNextDialog {
+    width: min(32rem, calc(100vw - 6vw)) !important;
+    max-width: calc(100vw - 6vw) !important;
+    margin: 0 3vw 3vh 0 !important;
+}
+
+[dir=rtl] .layout-tv .upNextContainer,
+[dir=rtl] .layout-tv .upNextContainer.upNextDialog {
+    margin: 0 0 3vh 3vw !important;
+}
+
+.layout-tv .videoOsd-visible .upNextContainer:not(.hide),
+.layout-tv .osd-visible .upNextContainer:not(.hide),
+.layout-tv .showing-osd .upNextContainer:not(.hide),
+.layout-tv.videoOsd-visible .upNextContainer:not(.hide),
+.layout-tv.osd-visible .upNextContainer:not(.hide),
+.layout-tv.showing-osd .upNextContainer:not(.hide),
+.layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .upNextContainer:not(.hide) {
+    transform: translateY(-11rem) !important;
+}
+
+/* Scrubber Trickplay & Chapter Preview Bubble */
+.sliderBubble {
+    background: rgba(16, 16, 20, 0.82) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: var(--apple-radius) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+    color: var(--apple-text) !important;
+    max-width: min(26rem, calc(100vw - 2rem)) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 0.35rem !important;
+}
+
+.sliderBubbleText {
+    font-family: var(--apple-font) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    font-variant-numeric: tabular-nums !important;
+    color: var(--apple-text) !important;
+    margin: 0.2rem 0.5rem !important;
+}
+
+.chapterThumbContainer {
+    position: relative !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+}
+
+.chapterThumbTextContainer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%) !important;
+    padding: 0.5rem 0.6rem 0.35rem !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.chapterThumbText {
+    font-family: var(--apple-font) !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    color: var(--apple-text) !important;
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    body.videoOsd-visible .skip-button-container,
+    body.osd-visible .skip-button-container,
+    body.showing-osd .skip-button-container,
+    body:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .skip-button-container {
+        transform: translateY(-5.5rem) !important;
+    }
+
+    .skip-button {
+        margin-right: 1.5rem !important;
+    }
+}
+
+.layout-tv .skip-button-container {
+    bottom: 6.5rem !important;
+}
+
+.layout-tv .videoOsd-visible .skip-button-container,
+.layout-tv .osd-visible .skip-button-container,
+.layout-tv .showing-osd .skip-button-container,
+.layout-tv.videoOsd-visible .skip-button-container,
+.layout-tv.osd-visible .skip-button-container,
+.layout-tv.showing-osd .skip-button-container,
+.layout-tv:has(#videoOsdPage:not(.hide) .videoOsdBottom:not(.videoOsdBottom-hidden)) .skip-button-container {
+    transform: translateY(-6rem) !important;
+}
+
+/* ============================================================================
+ * 2. UNSTYLED JELLYFIN VIEWS (Login, Audio Player Bar, Spotlight Search)
+ * ============================================================================ */
+
+/* Login & Profile Switcher */
+#loginPage .manualLoginForm {
+    max-width: 440px !important;
+    margin: 2.5rem auto !important;
+    padding: 2.25rem !important;
+    border-radius: var(--apple-radius-large) !important;
+    background: rgba(20, 20, 24, 0.72) !important;
+    backdrop-filter: blur(32px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6) !important;
+}
+
+#loginPage .visualLoginForm h1 {
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+    color: var(--apple-text) !important;
+}
+
+#divUsers .squareCard .cardScalable,
+#divUsers .squareCard .cardContent,
+#divUsers .squareCard .cardImageContainer {
+    border-radius: 50% !important;
+}
+
+#divUsers .squareCard .cardBox {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#divUsers .squareCard .cardScalable {
+    border: 2px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45) !important;
+    transition: transform 0.22s var(--apple-spring-fast), border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#divUsers .squareCard:hover .cardScalable,
+#divUsers .squareCard:focus .cardScalable {
+    transform: scale(1.06) !important;
+    border-color: var(--apple-accent) !important;
+    box-shadow: 0 0 0 2px var(--apple-accent), 0 16px 36px rgba(0, 0, 0, 0.55) !important;
+}
+
+#loginPage .readOnlyContent {
+    max-width: 440px !important;
+    margin: 1rem auto !important;
+}
+
+/* Music & Audio Player Bar */
+.appfooter {
+    background: rgba(14, 14, 18, 0.78) !important;
+    backdrop-filter: blur(32px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    color: var(--apple-text) !important;
+}
+
+.nowPlayingBar {
+    background: transparent !important;
+}
+
+.nowPlayingBar .nowPlayingImage {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+}
+
+.nowPlayingBarInfoContainer {
+    min-width: 0 !important;
+}
+
+.nowPlayingBarText {
+    color: var(--apple-text) !important;
+    font-weight: 600 !important;
+}
+
+.nowPlayingBarText,
+.nowPlayingBarText > div,
+.nowPlayingBarSecondaryText {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.nowPlayingBarSecondaryText {
+    color: var(--apple-text-dim) !important;
+}
+
+.nowPlayingPageImage {
+    border-radius: var(--apple-radius-large) !important;
+    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Spotlight Search Bar */
+#searchPage .searchFields {
+    margin: 1rem auto 1.5rem !important;
+}
+
+#searchPage .searchFieldsInner {
+    max-width: 46rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 999px !important;
+    padding: 0.45rem 1.25rem !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+
+#searchPage .searchFieldsInner:focus-within {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: var(--apple-accent) !important;
+    box-shadow: 0 0 0 2px var(--apple-accent), 0 14px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+#searchPage .searchFieldsInner .inputContainer {
+    margin: 0 !important;
+    flex: 1 !important;
+}
+
+#searchPage .searchfields-icon {
+    align-self: center !important;
+    margin: 0 0.75rem 0 0.15rem !important;
+    font-size: 1.45rem !important;
+    color: var(--apple-text-dim) !important;
+}
+
+#searchPage #searchTextInput.searchfields-txtSearch {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: var(--apple-text) !important;
+    font-size: 1.05rem !important;
+    padding: 0.35rem 0 !important;
+}
+
+.searchSuggestionsList .button-link {
+    display: inline-block !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--apple-text) !important;
+    padding: 0.4rem 0.95rem !important;
+    margin: 0.3rem !important;
+    text-decoration: none !important;
+    transition: background 0.18s ease, transform 0.18s var(--apple-spring-fast) !important;
+}
+
+.searchSuggestionsList .button-link:hover,
+.searchSuggestionsList .button-link:focus-visible {
+    background: var(--apple-accent) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Popup, Overlay & TV Text Overflow Guards */
+.playerStats {
+    max-width: min(50em, calc(100vw - 3rem)) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.playerStats-stats {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.playerStats-stat {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    gap: 0.15em 0.5em !important;
+}
+
+.playerStats-stat-label {
+    flex-shrink: 0 !important;
+    max-width: 100% !important;
+}
+
+.playerStats-stat-value {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+.actionSheetContent {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.actionSheetTitle,
+.actionSheetText {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    overflow-wrap: break-word !important;
+}
+
+.actionSheetScroller-tv {
+    width: min(44rem, 80vw) !important;
+    max-width: 90vw !important;
+    box-sizing: border-box !important;
+}
+
+.actionSheetMenuItem {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.actionsheetListItemBody,
+.listItemBody {
+    min-width: 0 !important;
+}
+
+.actionSheetItemText:not(.hide) {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+[dir=ltr] .actionSheetItemAsideText {
+    margin-left: 1rem !important;
+}
+
+[dir=rtl] .actionSheetItemAsideText {
+    margin-right: 1rem !important;
+}
+
+.listItemBodyText {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+.toastContainer {
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+}
+
+.toast {
+    min-width: min(20em, calc(100vw - 2rem)) !important;
+    max-width: min(38rem, calc(100vw - 2rem)) !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+.skinHeader.osdHeader,
+.osdHeader,
+.videoOsdHeader {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: visible !important;
+}
+
+/* The OSD header is a flex column centred by the theme; stretch the MUI toolbar so title and buttons sit at the edges (left back/title, right cast/sync) */
+.osdHeader > .videoOsd-appBar,
+.videoOsdHeader > .videoOsd-appBar {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex: 0 0 auto !important;
+}
+
+.osdHeader .headerTop:not(.hide),
+.videoOsdHeader .headerTop:not(.hide) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.osdHeader .headerLeft,
+.videoOsdHeader .headerLeft {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.headerLeft,
+.header-left {
+    min-width: 0 !important;
+}
+
+.pageTitle:not(.hide):not(.pageTitleWithLogo):not(:has(img, svg, .logo, .headerLogo)),
+.osdHeader .pageTitle:not(.hide),
+.videoOsdHeader .pageTitle:not(.hide),
+.videoOsd-appBar .MuiTypography-root:not(.hide) {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.formDialogHeader {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.formDialogHeaderTitle {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+/* Ensure Jellyfin's utility .hide class always wins over theme display rules */
+.hide {
+    display: none !important;
+}
+
+/* ============================================================================
+ * 3. OPT-IN FEATURE TOGGLES (:root --spoiler-blur & --card-labels)
+ * ============================================================================ */
+
+/* Unwatched episode spoiler blur (--spoiler-blur: 16px to enable) */
+.card[data-type="Episode"]:not(:has(.playedIndicator)) .cardImageContainer,
+.listItem[data-type="Episode"]:not(:has(.playedIndicator)) .listItemImage {
+    filter: blur(var(--spoiler-blur, 0px));
+    transition: filter 0.3s ease;
+}
+
+.card[data-type="Episode"]:hover .cardImageContainer,
+.card[data-type="Episode"]:focus-within .cardImageContainer,
+.listItem[data-type="Episode"]:hover .listItemImage {
+    filter: blur(0px);
+}
+
+/* Compact poster wall mode (--card-labels: none to enable) */
+.cardText {
+    display: var(--card-labels, block) !important;
+}
+
+#divUsers .cardText,
+.visualLoginForm .cardText {
+    display: block !important;
+}
+
+/* ============================================================================
+ * 4. SIGNATURE THEME LOADER — LIGHTWEIGHT BALANCED SILK WORMHOLE
+ * ============================================================================ */
+
+@keyframes ijellySpinCW {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ijellySpinCCW {
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes ijellyAuroraRadiateCW {
+    0% {
+        transform: scale(0.1) rotate(0deg);
+        opacity: 0;
+    }
+    18% {
+        opacity: 0.92;
+    }
+    68% {
+        opacity: 0.52;
+    }
+    100% {
+        transform: scale(1.22) rotate(190deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ijellyAuroraRadiateCCW {
+    0% {
+        transform: scale(0.1) rotate(0deg);
+        opacity: 0;
+    }
+    18% {
+        opacity: 0.86;
+    }
+    68% {
+        opacity: 0.46;
+    }
+    100% {
+        transform: scale(1.22) rotate(-190deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ijellyPulseCore {
+    0%, 100% { transform: scale(0.97); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes ijellySplashPulse {
+    0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.98); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+}
+
+.splashLogo {
+    width: 60vh !important;
+    height: 60vh !important;
+    filter: none !important;
+    animation: ijellySplashPulse 2.4s var(--apple-spring-fast) infinite !important;
+}
+
+/* Fullscreen lightweight Balanced Silk Wormhole (0 blur, 0 backdrop-filter) */
+.docspinner.mdlSpinnerActive {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    transform: none !important;
+    animation: none !important;
+    contain: layout style paint !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: 9999999 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: radial-gradient(circle at 50% 50%, rgba(7, 9, 20, 0.78) 0%, rgba(3, 3, 8, 0.92) 100%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Shared cosmic outer wash across all themes (pre-feathered, 0 runtime blur) */
+.docspinner.mdlSpinnerActive::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 76vmin !important;
+    height: 76vmin !important;
+    margin-left: -38vmin !important;
+    margin-top: -38vmin !important;
+    border-radius: 50% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background:
+        radial-gradient(ellipse 46% 34% at 38% 36%, rgba(0, 122, 255, 0.28) 0%, rgba(0, 122, 255, 0.08) 45%, transparent 72%),
+        radial-gradient(ellipse 44% 32% at 64% 62%, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0.06) 45%, transparent 72%),
+        radial-gradient(ellipse 52% 46% at 50% 50%, rgba(99, 102, 241, 0.18) 0%, transparent 70%) !important;
+}
+
+/* Theme-accented soft halo behind the middle wormhole circle */
+.docspinner.mdlSpinnerActive::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 21vmin !important;
+    height: 21vmin !important;
+    margin-left: -10.5vmin !important;
+    margin-top: -10.5vmin !important;
+    border-radius: 50% !important;
+    z-index: 2 !important;
+    opacity: 0.72 !important;
+    pointer-events: none !important;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.45) 22%, rgba(56, 189, 248, 0.16) 46%, transparent 72%) !important;
+}
+
+.docspinner .mdl-spinner__circle-clipper,
+.docspinner .mdl-spinner__gap-patch {
+    display: none !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer {
+    position: absolute !important;
+    inset: auto !important;
+    left: 50% !important;
+    top: 50% !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    border-radius: 50% !important;
+    pointer-events: none !important;
+}
+
+/* Shared cosmic outer silk waves radiating outward (GPU transform + opacity only) */
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-1,
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-2,
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-3 {
+    width: 64vmin !important;
+    height: 64vmin !important;
+    margin-left: -32vmin !important;
+    margin-top: -32vmin !important;
+    z-index: 1 !important;
+    will-change: transform, opacity !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-1 {
+    background:
+        radial-gradient(ellipse 36% 22% at 32% 28%, rgba(0, 122, 255, 0.52) 0%, rgba(0, 122, 255, 0.18) 48%, transparent 76%),
+        radial-gradient(ellipse 32% 24% at 70% 66%, rgba(56, 189, 248, 0.44) 0%, rgba(56, 189, 248, 0.14) 50%, transparent 78%),
+        radial-gradient(ellipse 28% 36% at 62% 26%, rgba(99, 102, 241, 0.36) 0%, transparent 72%) !important;
+    animation: ijellyAuroraRadiateCW 3.8s cubic-bezier(0.18, 0.65, 0.35, 0.98) infinite !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-2 {
+    background:
+        radial-gradient(ellipse 34% 20% at 68% 34%, rgba(56, 189, 248, 0.46) 0%, rgba(56, 189, 248, 0.14) 48%, transparent 76%),
+        radial-gradient(ellipse 30% 24% at 30% 68%, rgba(224, 242, 254, 0.24) 0%, rgba(0, 122, 255, 0.16) 46%, transparent 76%),
+        radial-gradient(ellipse 36% 24% at 48% 24%, rgba(0, 122, 255, 0.32) 0%, transparent 72%) !important;
+    animation: ijellyAuroraRadiateCCW 3.8s cubic-bezier(0.18, 0.65, 0.35, 0.98) -1.26s infinite !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-3 {
+    background:
+        radial-gradient(ellipse 34% 22% at 34% 64%, rgba(99, 102, 241, 0.44) 0%, rgba(99, 102, 241, 0.14) 48%, transparent 76%),
+        radial-gradient(ellipse 32% 22% at 66% 36%, rgba(0, 122, 255, 0.42) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 76%) !important;
+    animation: ijellyAuroraRadiateCW 3.8s cubic-bezier(0.18, 0.65, 0.35, 0.98) -2.53s infinite !important;
+}
+
+/* Balanced middle wormhole circle: theme border + orbiting start-point bead */
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-4 {
+    width: 11vmin !important;
+    height: 11vmin !important;
+    margin-left: -5.5vmin !important;
+    margin-top: -5.5vmin !important;
+    z-index: 3 !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    border: 2.2px solid #007aff !important;
+    background: radial-gradient(circle at 50% 50%, #020205 60%, #060812 82%, rgba(0, 122, 255, 0.28) 100%) !important;
+    box-shadow: none !important;
+    will-change: transform !important;
+    animation: ijellyPulseCore 2.6s ease-in-out infinite !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-4::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: -7px !important;
+    border-radius: 50% !important;
+    background: conic-gradient(from 0deg, transparent 0deg, transparent 210deg, #007aff 314deg, #38bdf8 360deg) !important;
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.6px), #000 calc(100% - 0.5px)) !important;
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2.6px), #000 calc(100% - 0.5px)) !important;
+    will-change: transform !important;
+    animation: ijellySpinCW 1.35s linear infinite !important;
+    pointer-events: none !important;
+}
+
+.docspinner.mdlSpinnerActive .mdl-spinner__layer-4::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: -15px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle 8.5px at 50% 9px, #ffffff 0%, #38bdf8 26%, #007aff 56%, transparent 100%) !important;
+    will-change: transform !important;
+    animation: ijellySpinCW 1.35s linear infinite !important;
+    pointer-events: none !important;
+}
+
+/* Inline section spinners */
+.mdl-spinner.mdlSpinnerActive:not(.docspinner) {
+    position: relative !important;
+    animation: none !important;
+}
+
+.mdl-spinner.mdlSpinnerActive:not(.docspinner) .mdl-spinner__layer {
+    display: none !important;
+}
+
+.mdl-spinner.mdlSpinnerActive:not(.docspinner)::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 50% !important;
+    background: conic-gradient(from 0deg, transparent 0deg, var(--apple-accent) 290deg, #ffffff 360deg) !important;
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)) !important;
+    mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)) !important;
+    animation: ijellySpinCW 0.9s linear infinite !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .docspinner.mdlSpinnerActive .mdl-spinner__layer,
+    .docspinner.mdlSpinnerActive .mdl-spinner__layer-4::before,
+    .docspinner.mdlSpinnerActive .mdl-spinner__layer-4::after,
+    .mdl-spinner.mdlSpinnerActive:not(.docspinner)::before,
+    .splashLogo {
+        animation-duration: 3s !important;
+    }
+}
